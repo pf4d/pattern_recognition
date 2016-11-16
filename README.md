@@ -3,9 +3,9 @@ Pattern recognition
 
 Collection of scripts generated for the University of Montana Fall term 2015 class taught by Dr. Douglas W. Raiford.
 
-Written in `r`, the source folders include source code and documentation for the following topics:
+Written in `R`, the source folders include source code and documentation for the following topics:
 
-1. Basics of the [r](https://www.r-project.org/about.html) programming language.
+1. Basics of the [R](https://www.r-project.org/about.html) programming language.
 
 2. [Feature selection](https://en.wikipedia.org/wiki/Feature_selection).
 
