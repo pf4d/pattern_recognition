@@ -1,0 +1,109 @@
+\input{../../tex_functions/functions.tex}
+
+\begin{document}
+\footnotesize
+
+\title{Clustering}
+\author{Evan Cummings\\
+CSCI 548 -- Douglas W.~Raiford -- Pattern Recognition}
+
+\maketitle
+
+\section{``Smiley'' data :}
+
+\subsection{$k$-means clustering :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.28\textwidth]{images/actual_smiley.pdf}
+    \quad
+    \includegraphics[width=0.28\textwidth]{images/kmeans_smiley.pdf}
+    \quad
+    \includegraphics[width=0.28\textwidth]{images/kmeans_5_smiley.pdf}
+  \caption{The original Smiley data (left) with types left eye, right eye, nose, and mouth colored arbitrarily; the $k$-means-derived classes with $k=4$ (middle); and the $k$-means-derived classes with $k=5$ (right). Note that $k$-means seeks to find $k$ clusters with minimum within-cluster-sum-of-distances from the cluster-center squared, and hence splits the data halfway between cluster means.  Because these data include a cluster, the `mouth', with an $x$-mean identical to the `nose' and directly in-between the two `eyes', $k$-means performed over these data with $k=4$ splits the `mouth' in two and assigns the `nose' cluster to one of the other `eye' clusters.  The phenomenon is further illustrated with the $k=5$ data (right) which displays five somewhat-equally-sized regions around the five cluster means.} 
+\end{figure}
+
+\subsection{hierarchical clustering :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.28\textwidth]{images/actual_smiley.pdf}
+    \quad
+    \includegraphics[width=0.28\textwidth]{images/hierClust_smiley.pdf}
+    \quad
+    \includegraphics[width=0.28\textwidth]{images/hierClust_ward_smiley.pdf}
+  \caption{The original Smiley data (left) with types left eye, right eye, nose, and mouth colored arbitrarily; clusters obtained by using hierarchical clustering with the \emph{complete linkage} method (middle); and hierarchical clustering performed with the \emph{Ward} method (right).  The complete linkage method combines clusters with minimum distance to each other, while the Ward method combines clusters which minimizes the total within-cluster variance, or \emph{error sum of squares}.  Because these data include highly-separated clusters, the Ward method is appropriate.}
+\end{figure}
+
+\newpage
+
+\subsection{R source code :}
+
+\begin{multicols*}{2}
+
+\Rexternal{../src/smiley.r}
+
+\end{multicols*}
+
+\newpage
+
+\section{Sequential-forward algorithm applied to the ``Iris'' data :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/iris_clusters.pdf}
+  \caption{The number of clusters derived with a given characteristic distance for the \emph{Iris} data using sequential clustering (left), the optimal clustering for $\hat{\theta}=3.5$ (middle), and data plotted by class (right).  Here, $\hat{\theta}$ was chosen as being representative of the most prevalent $\theta$-value corresponding to a number of clusters greater than one.  Note that while the Iris data contains three distinct classes, two of them are very close together.   Due to the fact that the sequential-forward algorithm combines nearby classes, it will perform poorly when differentiating between classes separated by short distances, as is the case here.}
+\end{figure}
+
+\begin{multicols*}{2}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.60\linewidth]{images/iris_3_clusters.pdf}
+  \caption{The resulting clusters for $\hat{\theta}=2.5$ corresponding to three clusters.  While not perfect, it appears that the sequential-forward algorithm does start to differentiate between the nearby classes \emph{Versicolor} and \emph{Virginica}.}
+\end{figure}
+
+\subsection{R source code :}
+
+\Rexternal{../src/iris.r}
+
+\end{multicols*}
+
+\newpage
+
+\section{E.~coli data :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/ecoli_heat.pdf}
+  \caption{Gene expression samples of E.~coli taken at $t=$4,7,15, and 24 hours, where each row represents a gene's expression profile, i.e., the extent to which the corresponding gene is expressed in biofilm vs.~suspension.  The rows are ordered by cluster hierarchy.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/ecoli_lines.pdf}
+  \caption{The individual three clusters derived as in Figure 7.  It appears that one cluster exhibits oscillatory behavior (left), one goes up and then back down (middle), and one decreases (right).}
+\end{figure}
+
+\begin{multicols*}{2}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\linewidth]{images/ecoli_pca.pdf}
+  \caption{The E.~coli data projected onto the first two principle components, colored by hierarchical clustering.  It appears that there are indeed three distinct clusters here!}
+\end{figure}
+
+\vfill
+\columnbreak
+
+\subsection{R source code :}
+
+\Rexternal{../src/ecoli.r}
+
+\end{multicols*}
+
+
+
+\end{document}
+
+

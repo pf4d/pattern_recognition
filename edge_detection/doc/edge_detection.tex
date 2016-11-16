@@ -1,0 +1,61 @@
+\input{../../tex_functions/functions.tex}
+
+\begin{document}
+\footnotesize
+
+\title{Edge detection}
+\author{Evan Cummings\\
+CSCI 548 -- Douglas W.~Raiford -- Pattern Recognition}
+
+\maketitle
+
+\section{Sobel edge-detection ``violet'' image :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.45\textwidth]{images/violet.jpg}
+    \quad
+    \includegraphics[width=0.45\textwidth]{images/violet_sobel.jpeg}
+  \caption{The originial ``violet'' image (left) and the edges detected by the \emph{Sobel} method (right).}
+\end{figure}
+
+\subsection{R source code :}
+
+\Rexternal{../src/violet.r}
+
+\section{Laplacian edge-detection ``Lenna'' image :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.30\textwidth]{images/Lenna.jpg}
+    \quad
+    \includegraphics[width=0.30\textwidth]{images/lenna_grey.jpeg}
+    \quad
+    \includegraphics[width=0.30\textwidth]{images/lenna_blurred.jpeg}
+
+    \includegraphics[width=0.30\textwidth]{images/lenna_blurred_tol_laplace.jpeg}
+    \quad
+    \includegraphics[width=0.30\textwidth]{images/lenna_laplace.jpeg}
+    \quad
+    \includegraphics[width=0.30\textwidth]{images/lenna_blurred_laplace.jpeg}
+  \caption{The original ``Lenna'' image (above left), grey-scaled Lenna (above middle), blurred Lenna (above right), Laplacian of blurred Lenna with values less than 0.4 set to zero (bottom left), Laplacian of non-blurred-grey-scaled Lenna (bottom middle), and Laplacian for blurred-grey-scaled Lenna (bottom right).}
+\end{figure}
+
+\subsection{R source code :}
+
+\Rexternal{../src/lenna.r}
+
+\newpage
+
+\subsection{Common functions r source code :}
+
+\begin{multicols}{2}
+
+\Rexternal{../src/functs.r}
+
+\end{multicols}
+
+
+\end{document}
+
+

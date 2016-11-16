@@ -1,0 +1,86 @@
+\input{functions.tex}
+
+\usepackage[backend=biber, style=authoryear, sorting=nyt]{biblatex}
+\renewcommand*{\bibfont}{\normalsize}
+\addbibresource{biblio.bib}
+
+\begin{document}
+
+\title{Determining the effect of gun laws on gun violence}
+\author{Evan Cummings\\
+CSCI 548 - Pattern Recognition}
+
+\maketitle
+
+\section{Background and significance}
+
+Gun laws in the US are currently a major topic of discussion; US citizens want proof that newly-proposed-gun-control laws will have an effect on gun-violence.  To date, a number of different laws have been enacted such as The Firearm Owner's Protection Act of 1986, The Brady Handgun Violence Act of 1993, or The Violent Crime Control and Law Enforcement Act of 1994.  While previous studies have described the overall trend in homicide by firearms [\cite{cooper}], attempted to derive some relationship between firearm violence and firearm ownership [\cite{swedler}], or in some other way attempted to describe the causes or effects of gun-violence, this new study will evaluate the relationships between circumstances of violence at the police-department level and derive relationships between gun laws and gun violence.  For example, many people believe that prohibiting certain people from owning guns will have a decreasing effect on gun violence.  In this study we will examine the effect The Firearm Owners Protection Act -- which banned the sale of firearms to felons -- had on firearm violence from 1986 onwards.  Understanding the effect these firearm laws have on firearm violence may help indicate the effect of enacting similar laws in the future.
+
+\section{Research description}
+
+We will supplement the Federal Bureau of Investigation's (FBI) Uniform Crime Report (UCR) [\cite{shr}] with factors for each police-department indicating the presence or non-presence of a gun-control law in its jurisdiction for each of the years included in the data, 1975 -- 2010.  Other factors will be incorporated from the Supplemental Homicide Report (SHR) section of the UCR, such as age of the victim and offender, sex and race of offender, weapon used, circumstances surrounding the crime, population, etc.
+
+%After some initial exploratory data analysis, clustering algorithms will be performed on the data to discover any grouping of firearm violence in the presence of gun-control laws.  Ideally, other factors such as poverty level and crime rate will be included from data provided by The US Census Bureau.
+
+First, we will evaluate the covariance structure of the data dimensions in order to derive with certainty any overall trends contained in the data.  These trends have the potential to provide immense insight into the nature of deadly violence.  For example, this analysis may show a certain prefrence for weapon type used in familiy violence;  we could then report with some quantifiable degree of certainty the weapon most likely used in these senarios.
+
+Next, we will examine the death-by-firearm counts for each police department jurisdiction and their relationship to gun-control-laws.  For each law, and for each jurisdiction, we can classify the region for each year as being under a certain law or not.  We can then perform linear discriminant analyses (LDA) on the data; if the data is separable by the presence of a gun-control law, we can report that the law does indeed have an affect on firarm deadly violence.
+
+
+\section{Preliminary results}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\linewidth]{images/weaps.pdf}
+    \includegraphics[width=\linewidth]{images/relationship.pdf}
+    \includegraphics[width=\linewidth]{images/circumstance.pdf}
+  \caption{The number of deaths in 1976 by weapon type (top), relationship of the offender to the victim (middle), and circumstances (bottom).}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{images/victim_age.pdf}
+  \end{minipage}
+  \quad
+  \begin{minipage}[b]{0.45\linewidth}
+    \includegraphics[width=\linewidth]{images/offender_age.pdf}
+  \end{minipage}
+  \caption{Histogram of victim ages (left) and offender ages (right) for 1976.}
+\end{figure}
+
+\section{Broader impacts}
+
+If sucessful, this project may be used to evaluate crime in a region and derive an appropriate gun-control law.  It may be possible to substantially reduce gun-violent-death.  At the very least this study will provide new insight into the nature of violent death in the U.S., as well as the complicated relationship between the offenders and their victims.
+
+\section{Project plan}
+
+\begin{enumerate}
+
+  \item download all the data
+
+  \item parse the data into a uniform file format
+
+  \item remove any irrelavent variables
+
+  \item perform exploratory data analysis techniques on the data
+
+  \item report the findings
+
+  \item determine the effect of gun-laws on gun-violence using the methods of pattern recognition
+
+  \item compile the document
+
+\end{enumerate}
+
+\printbibliography
+
+%\begin{figure}[H]
+%  \centering
+%    \includegraphics[width=0.45\textwidth]{images/.png}
+%\end{figure}
+
+
+\end{document}
+
+

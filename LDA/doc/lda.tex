@@ -1,0 +1,92 @@
+\input{../../tex_functions/functions.tex}
+
+\begin{document}
+
+\title{Linear discriminant analysis}
+\author{Evan Cummings\\
+CSCI 548 -- Douglas W.~Raiford -- Pattern Recognition}
+
+\maketitle
+
+\section{Iris data :}
+
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/iris.png}
+  \caption{The Iris data with types Setosa (red), Versicolor (blue), and Virginica (green) projected onto the first two: a.) linear discriminants, b.) principal coordinates, and c.) principle components.  Note the clear separation between Setosa from the other two types of Iris, for all three types of analyses.  We used a random $\approx 83.3\%$ of the \texttt{iris} dataset containing 125 elements to determine the first two linear discriminants, then used the resulting coefficients to predict the classes of the remaining 25 elements; the accuracy reported was $\approx 96\%$.}
+\end{figure}
+
+\subsection{R source code :}
+
+\begin{multicols}{2}
+
+\Rexternal{../src/iris.r}
+
+\end{multicols}
+
+\section{Fruit data :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/fruit.png}
+  \caption{The Fruit data with types apples (red), lemons (yellow), oranges (orange), and peaches (burlywood1) projected onto the first two: a.) linear discriminants, b.) principal coordinates, and c.) principle components.  Note the much clearer separation between classes using linear discriminant analysis from the other methods.  We used a random $\approx 83.3\%$ of the \texttt{fruit} dataset containing 833 elements to determine the first two linear discriminants, then used the resulting coefficients to predict the classes of the remaining 167 elements; the accuracy reported was $\approx 95.2\%$.}
+\end{figure}
+
+\subsection{R source code :}
+
+\begin{multicols}{2}
+
+\Rexternal{../src/fruit.r}
+
+\end{multicols}
+
+\newpage
+
+\section{Mouse data :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/mouse_experiment.png}
+  \caption{The Mouse data with experiment types proximal (black) and distal (red) projected onto the first two: a.) linear discriminants, b.) principal coordinates, and c.) principle components.  Note the improved separation between experiments using linear discriminant analysis from the other methods.  We used a random 18 elements of the \texttt{mouse} dataset containing 20 elements to determine the first two linear discriminants, then used the resulting coefficients to predict the classes of the remaining 2 elements; the accuracy reported was either $50\%$ or $100\%$.}
+\end{figure}
+
+\subsection{R source code :}
+
+\begin{multicols}{2}
+
+\Rexternal{../src/mouse.r}
+
+\end{multicols}
+
+\newpage
+
+\section{Tumor data :}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.95\textwidth]{images/tumor.png}
+  \caption{The Tumor data with types malignant (red) and benign (black) projected onto the first :  a.) linear discriminant, then calculated density; b.) two principal coordinates, and c.) two principle components.  Note that each analysis produces clear separation between classes, while the malignant cases' variance appears to be reduced.  We used a random $\approx 85.8\%$ of the \texttt{tumor} dataset containing 699 elements to determine the first linear discriminant, then used the resulting coefficients to predict the classes of the remaining 99 elements; the accuracy reported was $\approx 95\%$.}
+\end{figure}
+
+\subsection{R source code :}
+
+\begin{multicols}{2}
+
+\Rexternal{../src/tumor.r}
+
+\end{multicols}
+
+\section{Conclusions :}
+
+By including class information explicitly, LDA appears to be better able to differentiate between them; indeed, the LDA process results in a set of axes with \emph{greatest separation} between classes.  Furthermore, while the LDA classifier for the \texttt{mouse} data sometimes performs poorly depending on which elements were used to train the classifier, more often than not clear separation between classes is achieved (see Fig.\ 3).  Therefore, with more data, it may be possible to generate a very successful LDA classifier for these data.
+
+%\begin{figure}[H]
+%  \centering
+%    \includegraphics[width=0.45\textwidth]{images/.png}
+%\end{figure}
+
+
+\end{document}
+
+

@@ -1,0 +1,260 @@
+from pandas import *
+
+varis = {1  : {'name' : "ICPSR STUDY NUMBER",
+               'type' : int},
+         2  : "ICPSR EDITION NUMBER",
+         3  : "ICPSR PART NUMBER",
+         4  : "ICPSR SEQUENTIAL CASE IDENTIFICATION NUMBER",
+         5  : "STATE CODE",
+         6  : "ORI CODE",
+         7  : "GROUP",
+         8  : "SUB-GROUP",
+         9  : "GEOGRAPHIC REGION",
+         10 : "GEOGRAPHIC DIVISION",
+         11 : "POPULATION",
+         12 : "COUNTY",
+         13 : "SMSA",
+         14 : "SUBURBAN SMSA INDICATION",
+         15 : "AGENCY COUNT",
+         16 : "AGENCY NAME",
+         17 : "STATE NAME",
+         18 : "MONTH THE OFFENSE OCCURRED",
+         19 : "YEAR THE OFFENSE OCCURRED",
+         20 : "ADJUSTMENT DATE",
+         21 : "OUTPUT INDICATION",
+         22 : "FORM LINE NUMBER",
+         23 : "AGE OF VICTIM",
+         24 : "AGE OF VICTIM UNDER 12 MONTHS OLD",
+         25 : "SEX OF VICTIM",
+         26 : "RACE OF VICTIM",
+         27 : "SEX OF PERPETRATOR",
+         28 : "WEAPON",
+         29 : "CIRCUMSTANCES",
+         30 : "CIRCUMSTANCE INDICATION",
+         31 : "SUB-CIRCUMSTANCE"}
+
+
+state = {1  : "ALABAMA",
+         2  : "ARIZONA",
+         3  : "ARKANSAS",
+         4  : "CALIFORNIA",
+         5  : "COLORADO",
+         6  : "CONNETICUT",
+         7  : "DELAWARE",
+         8  : "WASHINGTON, D.C.",
+         9  : "FLORIDA",
+         10 : "GEORGIA",
+         11 : "IDAHO",
+         12 : "ILLINOIS",
+         13 : "INDIANA",
+         14 : "IOWA",
+         15 : "KANSAS",
+         16 : "KENTUCKY",
+         17 : "LOUISIANA",
+         18 : "MAINE",
+         19 : "MARYLAND",
+         20 : "MASSACHUSETTS",
+         21 : "MICHIGAN",
+         22 : "MINNESOTA",
+         23 : "MISSISSIPPI",
+         24 : "MISSOURI",
+         25 : "MONTANA",
+         26 : "NEBRASKA",
+         27 : "NEVADA",
+         28 : "NEW HAMPSHIRE",
+         29 : "NEW JERSEY",
+         30 : "NEW MEXICO",
+         31 : "NEW YORK",
+         32 : "NORTH CAROLINA",
+         33 : "NORTH DAKOTA",
+         34 : "OHIO",
+         35 : "OKLAHOMA",
+         36 : "OREGON",
+         37 : "PENNSYLVANIA",
+         38 : "RHODE ISLAND",
+         39 : "SOUTH CAROLINA",
+         40 : "SOUTH DAKOTA",
+         41 : "TENNESSEE",
+         42 : "TEXAS",
+         43 : "UTAH",
+         44 : "VERMONT",
+         45 : "VIRGINIA",
+         46 : "WASHINGTON",
+         47 : "WEST VIRGINIA",
+         48 : "WISCONSIN",
+         49 : "WYOMING",
+         50 : "ALASKA",
+         51 : "HAWAII"}
+
+group = {1 : "ALL CITIES 250,000 OR OVER",
+         2 : "CITIES BETWEEN 100,000 AND 249,999",
+         3 : "CITIES BETWEEN 50,000 AND 99,999",
+         4 : "CITIES BETWEEN 25,000 AND 49,999",
+         5 : "CITIES BETWEEN 10,000 AND 24,999",
+         6 : "CITIES BETWEEN 2,500 AND 9,999",
+         7 : "CITIES UNDER 2,500",
+         8 : "NON-SMSA COUNTIES",
+         9 : "SMSA COUNTIES"}
+
+subgroup = {11 : "ALL CITIES 1,000,000 OR OVER",
+            12 : "CITIES BETWEEN 500,000 AND 999,999",
+            13 : "CITIES BETWEEN 250,000 AND 499,999",
+            20 : "CITIES BETWEEN 100,000 AND 249,999",
+            30 : "CITIES BETWEEN 50,000 AND 99,999",
+            40 : "CITIES BETWEEN 25,000 AND 49,999",
+            50 : "CITIES BETWEEN 10,000 AND 24,999",
+            60 : "CITIES BETWEEN 2,500 AND 9,999",
+            70 : "CITIES UNDER 2,500",
+            81 : "NON-SMSA COUNTIES 100,000 OR OVER",
+            82 : "NON-SMSA COUNTIES BETWEEN 25,000 AND 99,999",
+            83 : "NON-SMSA COUNTIES BETWEEN 10,000 AND 24,999",
+            84 : "NON-SMSA COUNTIES UNDER 10,000",
+            91 : "SMSA COUNTIES 100,000 OR OVER",
+            92 : "SMSA COUNTIES BETWEEN 25,000 AND 99,999",
+            93 : "SMSA COUNTIES BETWEEN 10,000 AND 24,999",
+            94 : "SMSA COUNTIES UNDER 10,000"}
+
+region = {1 : "NORTHEAST - NEW ENGLAND AND MIDDLE ATLANTIC STATES",
+          2 : "NORTH CENTRAL - EAST NORTH CENTRAL AND WEST NORTH CENTRAL STATES",
+          3 : "SOUTH - SOUTH ATLANTIC, EAST SOUTH CENTRAL, AND WEST SOUTH CENTRAL STATES",
+          4 : "WEST - MOUNTAIN AND PACIFIC STATES"}
+
+division = {1 : "NEW ENGLAND STATES - CONNECTICUT, MAINE, MASSACHUSETTS, NEW HAMPSHIRE, RHODE ISLAND, VERMONT",
+            2 : "MIDDLE ATLANTIC STATES - NEW JERSEY, NEW YORK, PENNSYLVANIA",
+            3 : "EAST NORTH CENTRAL STATES - ILLINOIS, INDIANA, MICHIGAN, OHIO, WISCONSIN",
+            4 : "WEST NORTH CENTRAL STATES - IOWA, KANSAS, MINNESOTA, MISSOURI, NEBRASKA, NORTH DAKOTA, SOUTH DAKOTA",
+            5 : "SOUTH ATLANTIC STATES - DELAWARE, FLORIDA, GEORGIA, MARYLAND, NORTH CAROLINA, SOUTH CAROLINA, VIRGINIA, WASHINGTON D. C., WEST VIRGINIA",
+            6 : "EAST SOUTH CENTRAL STATES - ALABAMA, KENTUCKY, MISSISSIPPI, TENNESSEE",
+            7 : "WEST SOUTH CENTRAL STATES - ARKANSAS, LOUISIANA, OKLAHOMA, TEXAS",
+            8 : "MOUNTAIN STATES - ARIZONA, COLORADO, IDAHO, MONTANA, NEVADA, NEW MEXICO, UTAH, WYOMING",
+            9 : "PACIFIC STATES - ALASKA, CALIFORNIA, HAWAII, OREGON, WASHINGTON"}
+
+suburban = {0 : "NON-SUBURBAN",
+            1 : "SUBURBAN"}
+
+agencyCnt = {0 : "U.S. PARK POLICE, STATE POLICE AGENCIES, AND AGENCIES WHICH ARE COVERED BY OTHER AGENCIES.",
+             1 : "ALL OTHER AGENCIES"}
+
+months = {1  : "JANUARY",
+          2  : "FEBRUARY",
+          3  : "MARCH",
+          4  : "APRIL",
+          5  : "MAY",
+          6  : "JUNE",
+          7  : "JULY",
+          8  : "AUGUST",
+          9  : "SEPTEMBER",
+          10 : "OCTOBER",
+          11 : "NOVEMBER",
+          12 : "DECEMBER",
+          99 : "UNKNOWN"}
+
+adjust = {0 : "NORMAL",
+          1 : "ADJUSTMENT"}
+
+ageUnder12mo = {1 : "BIRTH TO ONE WEEK OLD (INCLUDES \"ABANDONED INFANT\")",
+                2 : "ONE WEEK TO TWELVE MONTHS OLD",
+                9 : "INAP., NOT CODED 0 IN REF 23"}
+
+sex = {1 : "MALE",
+       2 : "FEMALE",
+       9 : "UNKNOWN"}
+
+race = {1 : "WHITE (INCLUDES MEXICAN-AMERICANS)",
+        2 : "NEGRO",
+        3 : "AMERICAN INDIAN",
+        4 : "CHINESE",
+        5 : "JAPANESE",
+        6 : "OTHER (INCLUDES CLASSIFICATION \"YELLOW\" OR OTHER ORIENTAL AND NON-WHITES)",
+        9 : "UNKNOWN"}
+
+weapon = {11 : "FIREARM, TYPE NOT STATED (DOES NOT INCLUDE MECHANIC'S GREASE GUN OR CAULKING GUN)",
+          12 : "HANDGUN - PISTOL, REVOLVER, ETC.",
+          13 : "RIFLE",
+          14 : "SHOTGUN",
+          15 : "OTHER GUN - OTHER THAN 11, 12, 13, AND 14",
+          20 : "KNIFE OR CUTTING INSTRUMENT - INCLUDES ICEPICK, SCREWDRIVER, AX, ETC.",
+          30 : "BLUNT OBJECT - HAMMER, CLUB, ETC. FACTS MUST SUGGEST WEAPON WAS NOT HANDS AND FEET.",
+          40 : "PERSONAL WEAPONS - INCLUDES BEATING BY HANDS, FEET, AND OTHER BODY MEMBERS OR USE OF TEETH",
+          50 : "POISON - DOES NOT INCLUDE GAS",
+          60 : "EXPLOSIVES",
+          65 : "ARSON",
+          70 : "NARCOTICS AND DRUGS - INCLUDES SLEEPING PILLS",
+          80 : "STRANGULATION - INCLUDES DROWNING WHEN VICTIM WAS HELD UNDER WATER. DOES NOT INCLUDE HANGING.",
+          85 : "ASPHYXIATION - INCLUDES ASPHYXIATION OR DEATH BY GAS",
+          99 : "OTHER- TYPE OF WEAPON NOT DESIGNED OR TYPE UNKNOWN"}
+
+circumstance = {11 : "SPOUSE KILLS SPOUSE - WIFE, HUSBAND, COMMON LAW WIFE OR HUSBAND, EX-HUSBAND, OR EX-WIFE. DOES NOT INCLUDE COUPLES LIVING TOGETHER UNLESS COMMON LAW SPOUSE.",
+                12 : "PARENT KILLS CHILD",
+                13 : "CHILD KILLS PARENT",
+                14 : "RELATION KILLS RELATION - VICTIM IS UNCLE, COUSIN, BROTHER, ETC. INCLUDES IN-LAW RELATIVES",
+                19 : "OTHER FAMILY - INCOMPLETE DATA THAT IMPLIES FAMILY RELATIONSHIP BUT DOES NOT DESCRIBE IT, SUCH AS \"MARITAL TROUBLE,\" \"DESPONDENCE,\" \"DOMESTIC ARGUMENT,\" ETC.",
+                21 : "LOVERS AND TRIANGLE - INCLUDES PERSONS LIVING TOGETHER",
+                22 : "BRAWL DUE TO ALCOHOL - INCLUDES CIRCUMSTANCES SUCH AS \"BARTENDER SHOOTS DRUNK,\" \"ARGUMENT IN BAR, NIGHTSPOT, TAVERN, CLUB, ETC.\"",
+                23 : "ARGUMENT OVER MONEY OR PROPERTY - BASIS FOR MURDER IS MONEY OR PROPERTY",
+                29 : "OTHER ARGUMENTS - INCLUDES KILLINGS BY ACQUAINTANCES IF DETAILS OF CIRCUMSTANCES NOT KNOWN OR INCOMPLETE",
+                31 : "GANGLAND KILLING - INCLUDES GANGLAND KILLINGS, PARTNERS IN CRIME, AND JUVENILE GANG KILLINGS.",
+                33 : "INSTITUTIONAL KILLING - INMATE KILLS INMATE.  LIMITED TO PENAL INSTITUTIONS AND JAIL LOCKUPS.  DOES NOT INCLUDE MENTAL INSTITUTIONS.",
+                34 : "FELONY MURDER",
+                35 : "SUSPECTED FELONY TYPE - VICTIM FOUND MURDERED, CIRCUMSTANCES INDICATE POSSIBLE FELONY TYPE MURDER.  WHEN BODY FOUND MUTILATED AND NO CIRCUMSTANCES GIVEN, CODED AS SUSPECTED FELONY TYPE, NOT AS \"CIRUMSTANCES NOT DESCRIBED\" (CODE 59).",
+                41 : "FELON KILLED BY PRIVATE CITIZEN",
+                42 : "FELON KILLED BY POLICE",
+                51 : "ILLEGAL ABORTION - MOTHER DIES AS A RESULT OF AN ILLEGAL ABORTION",
+                99 : "CIRCUMSTANCES NOT DESCRIBED OR CANNOT BE SCORED FROM INFORMATION GIVEN"}
+
+circumInd = {0 : "NORMAL",
+             1 : "JUVENILE - MURDERER UNDER AGE 18",
+             2 : "SUICIDE - MURDERER COMMITTED SUICIDE",
+             9 : "INSANE - MURDERER INSANE OR MENTALLY DERANGED"}
+
+subCircum = {2  : "RAPE",
+             3  : "ROBBERY",
+             5  : "BURGLARY",
+             6  : "LARCENY",
+             7  : "AUTO THEFT",
+             9  : "ARSON",
+             16 : "PROSTITUTION AND COMMERCIALIZED VICE",
+             17 : "SEX OFFENSES - INCLUDES SODOMY, INCEST, ALDULTER, STATUTORY RAPE, ETC.",
+             18 : "NARCOTIC DRUG LAW",
+             19 : "GAMBLING",
+             20 : "ALL OTHER OFFENSES - I.E., REVENGE",
+             21 : "OFFENSES NOT SPECIFIED",
+             31 : "REF 29, CIRCUMSTANCE",
+             33 : "REF 29, CIRCUMSTANCE",
+             34 : "REF 29, CIRCUMSTANCE",
+             41 : "REF 29, CIRCUMSTANCE",
+             42 : "REF 29, CIRCUMSTANCE",
+             60 : "FELON ATTACKED POLICE OFFICER",
+             61 : "FELON ATTACKED FELLOW POLICE OFFICER",
+             62 : "FELON ATTACKED CIVILIAN",
+             63 : "FELON ATTEMPTED FLIGHT FROM CRIME",
+             64 : "FELON KILLED IN COMMISSION OF CRIME",
+             65 : "FELON RESISTED ARREST",
+             97 : "NOT ENOUGH INFORMATION TO DETERMINE",
+             99 : "NA; INAP., REF 29 NOT CODED 34, 33, 34, 41, OR 42"}
+
+data = open('../data/SHC/1975/ICPSR_09028/DS0053/09028-0053-Data.txt')
+
+wid = [4,1,2,5,2,7,1,2,1,1,7,3,3,1,1,24,6,2,1,6,1,2,3,1,1,1,1,2,2,1,2]
+
+num = []
+
+# fill the arrays values from the .txt file :
+for l in data.readlines():
+  j = 0
+  g = []
+  for i,w in enumerate(wid):
+    g.append(l[j:j+w])
+    j += w
+  print g
+  num.append(g[3])
+
+  #d = dt.datetime(int(dateSplit[2]), 
+  #                int(dateSplit[0]), 
+  #                int(dateSplit[1]))
+  #date.append(d)
+  #spent.append(float(m.group(2)))
+data.close()
+
+
+num = array(num)
