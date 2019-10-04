@@ -56,7 +56,7 @@ header = {0  : 'year',
           52 : 'offender 4 sex',
           53 : 'offender 4 weapon',
           54 : 'offender 4 relationship to victim 1',
-          55 : 'offender 4 circumstance', 
+          55 : 'offender 4 circumstance',
           56 : 'offender 4 sub-circumstance',
           57 : 'offender 5 age',
           58 : 'offender 5 sex',
@@ -158,7 +158,7 @@ dims   = ['year',
           'offender 4 sex',
           'offender 4 weapon',
           'offender 4 relationship to victim 1',
-          'offender 4 circumstance', 
+          'offender 4 circumstance',
           'offender 4 sub-circumstance',
           'offender 5 age',
           'offender 5 sex',
@@ -260,7 +260,7 @@ state = {1  : "ALABAMA",
          55 : "GUAM",
          62 : "VIRGIN ISLANDS"}
 
-group = {1  : "POSSESSIONS", 
+group = {1  : "POSSESSIONS",
          2  : "ALL CITIES 250,000 OR OVER",
          3  : "ALL CITIES 1,000,000 OR OVER",
          4  : "CITIES BETWEEN 500,000 AND 999,999",
@@ -414,7 +414,7 @@ subCircum = {1 : "FELON ATTACKED POLICE OFFICER",
 
 data = load('data/data.npy')
 
-m1 = logical_or(data[:,37] == 50, data[:,37] == 51) 
+m1 = logical_or(data[:,37] == 50, data[:,37] == 51)
 m1 = logical_or(m1,  data[:,37] == 52)
 m1 = logical_or(m1,  data[:,37] == 53)
 #m1 = logical_and(m1, data[:,9] == 1)
@@ -443,12 +443,12 @@ def plot_data_matrix(data, m1_n, m2_n, m1_fs, m2_fs):
   rela = data[:,36]
   circ = data[:,37]
   subc = data[:,38]
-  
+
   weap_u = unique(weap)
   rela_u = unique(rela)
   circ_u = unique(circ)
   subc_u = unique(subc)
-  
+
   w_nam  = []
   r_nam  = []
   c_nam  = []
@@ -457,63 +457,63 @@ def plot_data_matrix(data, m1_n, m2_n, m1_fs, m2_fs):
   r_cnt  = []
   c_cnt  = []
   s_cnt  = []
-  
+
   for k in weap_u:
     w_nam.append(weapon[k])
     w_cnt.append(sum(weap == k))
   w_nam = array(w_nam)
-  
+
   for k in rela_u:
     r_nam.append(relationship[k])
     r_cnt.append(sum(rela == k))
   r_nam = array(r_nam)
-  
+
   for k in circ_u:
     c_nam.append(circumstance[k])
     c_cnt.append(sum(circ == k))
   c_nam = array(c_nam)
-  
+
   for k in subc_u:
     s_nam.append(subCircum[k])
     s_cnt.append(sum(subc == k))
   s_nam = array(s_nam)
-  
+
   r_idx = argsort(r_cnt)
   w_idx = argsort(w_cnt)[::-1]
   c_idx = argsort(c_cnt)
   s_idx = argsort(s_cnt)
-  
+
   r_nam = r_nam[r_idx]
   w_nam = w_nam[w_idx]
   c_nam = c_nam[c_idx]
   s_nam = s_nam[s_idx]
-  
+
   weap_u = weap_u[w_idx]
   rela_u = rela_u[r_idx]
   circ_u = circ_u[c_idx]
   subc_u = subc_u[s_idx]
-  
+
   mat1 = zeros((len(weap_u), len(rela_u)))
   mat2 = zeros((len(weap_u), len(circ_u)))
-  
+
   for i,w in enumerate(weap_u):
     for j,r in enumerate(rela_u):
       x = weap == w
       y = rela == r
       z = logical_and(x,y)
       mat1[i,j] = sum(z)
-  
+
   for i,w in enumerate(weap_u):
     for j,c in enumerate(circ_u):
       x = weap == w
       y = circ == c
       z = logical_and(x,y)
       mat2[i,j] = sum(z)
-  
+
   plot_matrix(mat1,'', m1_n, continuous=True, cmap='RdGy_r', scale='log',
               xlabel=r_nam, ylabel=w_nam, Mmin=1e-1, direc='../doc/images/',
               figsize=m1_fs)
-  
+
   plot_matrix(mat2, '', m2_n, continuous=True, cmap='RdGy_r', scale='log',
               xlabel=c_nam, ylabel=w_nam, Mmin=1e-1, direc='../doc/images/',
               figsize=m2_fs)
