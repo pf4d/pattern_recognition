@@ -1,26 +1,25 @@
-\input{../../tex_functions/functions.tex}
+\documentclass{evanarticle}
 
-\usepackage[backend=biber, style=authoryear, sorting=nyt]{biblatex}
-\renewcommand*{\bibfont}{\normalsize}
+\usepackage[columnsep=.5cm, top=2cm, bottom=2cm, left=1cm, right=1cm]{geometry}
+
 \addbibresource{biblio.bib}
-
-\begin{document}
 
 \title{Determining the effect of gun laws on gun violence}
 \author{Evan M.~Cummings \and Douglas W.~Raiford}
 
-\maketitle
+\date{\today}
 
-\begin{changemargin}{4cm}{4cm}
-\textbf{Abstract}
+\begin{document}
 
-\small
+\twocolumn[
+  \begin{@twocolumnfalse}
+    \maketitle
+    \begin{abstract}
 With data provided by the Federal Bureau of Investigation, this study investigates circumstances surrounding violent death through the years 1976 -- 2012 using methods of pattern recognition and machine learning.  The analysis indicates separability in the data when classifying by suburban and non-suburban environments, or by type of weapon used in the offense.
-\normalsize
-\vspace{10mm}
-\end{changemargin}
-
-\begin{multicols}{2}
+    \end{abstract}
+  \end{@twocolumnfalse}
+  \vspace{5mm}
+]
 
 \section{Introduction}
 
@@ -73,7 +72,7 @@ The circumstance dimension contains an entry to indicate a justifiable homicide.
 
 \section{Results}
 
-To begin, any data rows with missing victim age, victim sex, offender age, or offender sex are eliminated.  The following sections highlight the results from PCA over the whole dataset and LDA with select columns of the data used as classifiers.  
+To begin, any data rows with missing victim age, victim sex, offender age, or offender sex are eliminated.  The following sections highlight the results from PCA over the whole dataset and LDA with select columns of the data used as classifiers.
 
 The columns of the design matrix are:
 
@@ -154,8 +153,6 @@ Linear discriminant analysis finds the axes or axis of greatest variation betwee
   \caption{Linear discriminant analysis with classes defined as suburban (green) and non-suburban (blue) environments.  These data appear bi-modal, with suburban environment deaths exhibiting a remarkable peak on the positive axis.}
 \end{figure}
 
-\end{multicols}
-
 \subsubsection{The ``sub-circumstance'' class}
 
 \begin{figure}[H]
@@ -189,9 +186,9 @@ Linear discriminant analysis finds the axes or axis of greatest variation betwee
 \subsection{The ``weapon'' class}
 
 \begin{figure}[H]
- 
+
   \centering
-  
+
   \begin{minipage}[b]{0.20\linewidth}
     \includegraphics[width=\linewidth]{images/weapon/ASPHYXIATION.png}
   \end{minipage}
@@ -203,11 +200,11 @@ Linear discriminant analysis finds the axes or axis of greatest variation betwee
   \begin{minipage}[b]{0.20\linewidth}
     \includegraphics[width=\linewidth]{images/weapon/DROWNING.png}
   \end{minipage}
-  \quad  
+  \quad
   \begin{minipage}[b]{0.20\linewidth}
     \includegraphics[width=\linewidth]{images/weapon/DRUGS.png}
   \end{minipage}
-  
+
   \begin{minipage}[b]{0.20\linewidth}
     \includegraphics[width=\linewidth]{images/weapon/EXPLOSIVES.png}
   \end{minipage}
@@ -263,15 +260,13 @@ Linear discriminant analysis finds the axes or axis of greatest variation betwee
   \begin{minipage}[b]{0.20\linewidth}
     \includegraphics[width=\linewidth]{images/weapon/all.png}
   \end{minipage}
-  
+
   \caption{Results of linear discriminant analysis with weapon type class.  There were two significant linear discriminants, depicted here with the x- and y-axes with distributions for each discriminant depicted in the upper and right sides respectively.  Many classes of weapons display tri- and bi-modal distributions in the x-axis discriminant.}
 
 \end{figure}
 
 \newpage
 
-
-\begin{multicols}{2}
 
 \section{Discussion}
 
@@ -282,9 +277,6 @@ While the PCA results are inconclusive, the LDA results indicate that some of th
 Some interesting patterns have emerged from this stud which suggest that a further exploration of the FBI dataset may be fruitful.  If successful, this project may be used to evaluate crime in a region and derive an appropriate gun-control law.  It may be possible to substantially reduce gun-violent-death.  At the very least this study will provide new insight into the nature of violent death in the U.S., as well as the complicated relationship between the offenders and their victims.
 
 \printbibliography
-
-\end{multicols}
-
 
 %\begin{figure}[H]
 %  \centering
