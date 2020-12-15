@@ -74,7 +74,7 @@ xm = M[m,] %*% zlda$scaling[,1]
 dm = density(xm)
 
 # plot them colored by experiment :
-png('../doc/images/tumor.png', res=200, width=9, 
+png('../doc/images/tumor.png', res=200, width=9,
     height=3, units='in')
 par(mar=c(2.5,2.5,.1,.1),mgp = c(1.5, .5, 0), mfrow=c(1,3))
 
@@ -84,19 +84,19 @@ plot(db$x, db$y, col=cols[1], type='l', pch=21, xlim=xrange,
 lines(dm$x, dm$y, col=cols[2], pch=21,
      xlab='First Linear Discriminant',
      ylab='Density', main='')
-legend("topleft", "a.)", bty="n") 
+legend("topleft", "a.)", bty="n")
 grid()
 
 plot(zmds, col=cc, bg=cc, type='p', pch=21,
      xlab='First Principal Coordinate',
      ylab='Second Principal Coordinate', main='')
-legend("topleft", "b.)", bty="n") 
+legend("topleft", "b.)", bty="n")
 grid()
 
 plot(zpca$x[,1], zpca$x[,2], col=cc, bg=cc, type='p', pch=21,
      xlab='First Principal Component',
      ylab='Second Principal Component', main='')
-legend("topleft", "c.)", bty="n") 
+legend("topleft", "c.)", bty="n")
 grid()
 
 dev.off()

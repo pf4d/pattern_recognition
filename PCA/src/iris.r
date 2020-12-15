@@ -47,7 +47,7 @@ par(mar=c(2.5,2.5,2.5,.1),mgp = c(1.5, .5, 0))
 plot(x,y, col=cc, bg=cc, type='p', pch=21, xlab='First Principal Component',
      ylab='Second Principal Component', main='Iris Data')
 legend('topright', levels(c),
-       col   = c('red', 'green', 'blue'), 
+       col   = c('red', 'green', 'blue'),
        pt.bg = c('red', 'green', 'blue'), pch = 21)
 dev.off()
 

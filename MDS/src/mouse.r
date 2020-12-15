@@ -29,10 +29,10 @@ cc[P] = cols[1]
 cc[D] = cols[2]
 
 # plot them colored by experiment :
-png('../doc/images/mds_plot_mouse_experiment.png', res=200, width=6, 
+png('../doc/images/mds_plot_mouse_experiment.png', res=200, width=6,
     height=6, units='in')
 par(mar=c(2.5,2.5,2.5,.1),mgp = c(1.5, .5, 0))
-plot(p, col=cc, bg=cc, type='p', pch=21, cex=2, 
+plot(p, col=cc, bg=cc, type='p', pch=21, cex=2,
      xlab='First Principal Component',
      ylab='Second Principal Component', main='Mouse Data Using MDS')
 legend('topleft', c('proximal', 'distal'), col = cols, pt.bg = cols, pch = 21)
@@ -45,7 +45,7 @@ cc[B] = cols[1]
 cc[C] = cols[2]
 
 # plot them colored by mousey type :
-png('../doc/images/mds_plot_mouse_type.png', res=200, width=6, 
+png('../doc/images/mds_plot_mouse_type.png', res=200, width=6,
     height=6, units='in')
 par(mar=c(2.5,2.5,2.5,.1),mgp = c(1.5, .5, 0))
 plot(p, col=cc, bg=cc, type='p', pch=21, cex=2,

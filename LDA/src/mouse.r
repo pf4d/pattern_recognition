@@ -84,29 +84,29 @@ cc[P] = cols[1]
 cc[D] = cols[2]
 
 # plot them colored by experiment :
-png('../doc/images/mouse_experiment.png', res=200, width=9, 
+png('../doc/images/mouse_experiment.png', res=200, width=9,
     height=3, units='in')
 par(mar=c(2.5,2.5,.1,.1),mgp = c(1.5, .5, 0), mfrow=c(1,3))
 
 plot(xlda, ylda, col=cc, bg=cc, type='p', pch=21,
      xlab='First Linear Discriminant',
      ylab='Second Linear Discriminant', main='')
-legend("topleft", "a.)", bty="n") 
+legend("topleft", "a.)", bty="n")
 grid()
 #legend('topright', levels(c),
-#       col   = c('red', 'green', 'blue'), 
+#       col   = c('red', 'green', 'blue'),
 #       pt.bg = c('red', 'green', 'blue'), pch = 21)
 
 plot(zmds, col=cc, bg=cc, type='p', pch=21,
      xlab='First Principal Coordinate',
      ylab='Second Principal Coordinate', main='')
-legend("topleft", "b.)", bty="n") 
+legend("topleft", "b.)", bty="n")
 grid()
 
 plot(zpca$x[,1], zpca$x[,2], col=cc, bg=cc, type='p', pch=21,
      xlab='First Principal Component',
      ylab='Second Principal Component', main='')
-legend("topleft", "c.)", bty="n") 
+legend("topleft", "c.)", bty="n")
 grid()
 dev.off()
 
@@ -118,29 +118,29 @@ cc[B] = cols[1]
 cc[C] = cols[2]
 
 # plot them colored by class :
-png('../doc/images/mouse_class.png', res=200, width=9, 
+png('../doc/images/mouse_class.png', res=200, width=9,
     height=3, units='in')
 par(mar=c(2.5,2.5,.1,.1),mgp = c(1.5, .5, 0), mfrow=c(1,3))
 
 plot(xlda, ylda, col=cc, bg=cc, type='p', pch=21,
      xlab='First Linear Discriminant',
      ylab='Second Linear Discriminant', main='')
-legend("topleft", "a.)", bty="n") 
+legend("topleft", "a.)", bty="n")
 grid()
 #legend('topright', levels(c),
-#       col   = c('red', 'green', 'blue'), 
+#       col   = c('red', 'green', 'blue'),
 #       pt.bg = c('red', 'green', 'blue'), pch = 21)
 
 plot(zmds, col=cc, bg=cc, type='p', pch=21,
      xlab='First Principal Coordinate',
      ylab='Second Principal Coordinate', main='')
-legend("topleft", "b.)", bty="n") 
+legend("topleft", "b.)", bty="n")
 grid()
 
 plot(zpca$x[,1], zpca$x[,2], col=cc, bg=cc, type='p', pch=21,
      xlab='First Principal Component',
      ylab='Second Principal Component', main='')
-legend("topleft", "c.)", bty="n") 
+legend("topleft", "c.)", bty="n")
 grid()
 dev.off()
 

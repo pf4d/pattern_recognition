@@ -824,16 +824,16 @@ data_n = []
 
 # fill the arrays values from the .txt file :
 for l in data.readlines():
-  j = 0
-  g = []
-  for i,w in enumerate(wid):
-    t = l[j:j+w]
-    if t.isspace():
-      g.append(None)
-    else:
-      g.append(varis[i+1]['type'](t))
-    j += w
-  data_n.append(array(g))
+	j = 0
+	g = []
+	for i,w in enumerate(wid):
+		t = l[j:j+w]
+		if t.isspace():
+			g.append(None)
+		else:
+			g.append(varis[i+1]['type'](t))
+		j += w
+	data_n.append(array(g))
 data.close()
 
 data_n = array(data_n)

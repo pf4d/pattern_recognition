@@ -31,9 +31,9 @@ clusts = rep(NA, k)
 # sequential clustering over range of thetas :
 for (i in seq(1:k))
 {
-  v         = sequential_forward(m, theta=thetas[i], kmax=10)
-  numClust  = length(unique(v))
-  clusts[i] = numClust
+	v         = sequential_forward(m, theta=thetas[i], kmax=10)
+	numClust  = length(unique(v))
+	clusts[i] = numClust
 }
 
 #===============================================================================

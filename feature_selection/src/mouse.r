@@ -123,7 +123,7 @@ par(mar=c(2.5,2.5,.1,.1),mgp = c(1.5, .5, 0), mfrow=c(1,1))
 #plot(xlda1, ylda1, col=cc, bg=cc, type='p', pch=21,
 #     xlab='First Linear Discriminant',
 #     ylab='Second Linear Discriminant', main='')
-#legend("topleft", "a.)", bty="n") 
+#legend("topleft", "a.)", bty="n")
 #grid()
 
 plot(dp2$x, dp2$y, col=cols[1], type='l', pch=21, xlim=xrange2,
@@ -132,13 +132,13 @@ plot(dp2$x, dp2$y, col=cols[1], type='l', pch=21, xlim=xrange2,
 lines(dd2$x, dd2$y, col=cols[2], pch=21,
      xlab='First Linear Discriminant',
      ylab='Density', main='')
-#legend("topright", "a.)", bty="n") 
+#legend("topright", "a.)", bty="n")
 grid()
 
 #plot(xlda2, ylda2, col=cc, bg=cc, type='p', pch=21,
 #     xlab='First Linear Discriminant',
 #     ylab='Second Linear Discriminant', main='')
-#legend("topleft", "b.)", bty="n") 
+#legend("topleft", "b.)", bty="n")
 #grid()
 
 dev.off()

@@ -241,19 +241,19 @@ num = []
 
 # fill the arrays values from the .txt file :
 for l in data.readlines():
-  j = 0
-  g = []
-  for i,w in enumerate(wid):
-    g.append(l[j:j+w])
-    j += w
-  print g
-  num.append(g[3])
+	j = 0
+	g = []
+	for i,w in enumerate(wid):
+		g.append(l[j:j+w])
+		j += w
+	print g
+	num.append(g[3])
 
-  #d = dt.datetime(int(dateSplit[2]), 
-  #                int(dateSplit[0]), 
-  #                int(dateSplit[1]))
-  #date.append(d)
-  #spent.append(float(m.group(2)))
+	#d = dt.datetime(int(dateSplit[2]),
+	#                int(dateSplit[0]),
+	#                int(dateSplit[1]))
+	#date.append(d)
+	#spent.append(float(m.group(2)))
 data.close()
 
 

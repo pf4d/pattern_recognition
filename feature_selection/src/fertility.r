@@ -85,7 +85,7 @@ cat("accuracy of t-test nway =", n2, "\n")
 cat("accuracy of seq nway =",    n3, "\n")
 
 # print the result to the screen :
-cat("accuracy of full dataset =", 
+cat("accuracy of full dataset =",
     prop1*100, "%\n")
 cat("J11 =", J11, ": J21 =", J21, ": J31 =", J31, "\n")
 cat("accuracy of t-test dims",
@@ -144,7 +144,7 @@ plot(db1$x, db1$y, col=cols[1], type='l', pch=21, xlim=xrange2,
 lines(dm1$x, dm1$y, col=cols[2], pch=21,
      xlab='First Linear Discriminant',
      ylab='Density', main='')
-legend("topright", "a.)", bty="n") 
+legend("topright", "a.)", bty="n")
 grid()
 
 plot(db2$x, db2$y, col=cols[1], type='l', pch=21, xlim=xrange2,
@@ -153,7 +153,7 @@ plot(db2$x, db2$y, col=cols[1], type='l', pch=21, xlim=xrange2,
 lines(dm2$x, dm2$y, col=cols[2], pch=21,
      xlab='First Linear Discriminant',
      ylab='Density', main='')
-legend("topright", "b.)", bty="n") 
+legend("topright", "b.)", bty="n")
 grid()
 
 plot(db3$x, db3$y, col=cols[1], type='l', pch=21, xlim=xrange2,
@@ -162,7 +162,7 @@ plot(db3$x, db3$y, col=cols[1], type='l', pch=21, xlim=xrange2,
 lines(dm2$x, dm2$y, col=cols[2], pch=21,
      xlab='First Linear Discriminant',
      ylab='Density', main='')
-legend("topright", "c.)", bty="n") 
+legend("topright", "c.)", bty="n")
 grid()
 
 dev.off()

@@ -498,17 +498,17 @@ def plot_data_matrix(data, m1_n, m2_n, m1_fs, m2_fs):
 
   for i,w in enumerate(weap_u):
     for j,r in enumerate(rela_u):
-      x = weap == w
-      y = rela == r
-      z = logical_and(x,y)
-      mat1[i,j] = sum(z)
+			x = weap == w
+			y = rela == r
+			z = logical_and(x,y)
+			mat1[i,j] = sum(z)
 
   for i,w in enumerate(weap_u):
     for j,c in enumerate(circ_u):
-      x = weap == w
-      y = circ == c
-      z = logical_and(x,y)
-      mat2[i,j] = sum(z)
+			x = weap == w
+			y = circ == c
+			z = logical_and(x,y)
+			mat2[i,j] = sum(z)
 
   plot_matrix(mat1,'', m1_n, continuous=True, cmap='RdGy_r', scale='log',
               xlabel=r_nam, ylabel=w_nam, Mmin=1e-1, direc='../doc/images/',
@@ -637,7 +637,7 @@ def plot_data_matrix(data, m1_n, m2_n, m1_fs, m2_fs):
 #
 #===============================================================================
 # data matrix :
-m = logical_and(data[:,11] != 900, data[:,11] != 999) 
+m = logical_and(data[:,11] != 900, data[:,11] != 999)
 m = logical_and(m,  data[:,33] != 999)
 m = logical_and(m,  data[:,34] != 3)
 m = logical_and(m,  data[:,12] != 3)
@@ -651,73 +651,73 @@ import pandas          as pnd
 import seaborn.apionly as sns
 
 def plot_lda(X, y, title, label_dict, direc):
-  """
-  """
-  lda = LDA(n_components=2)
-  L   = lda.fit_transform(X,y)
-  n   = shape(L)[1]
-  
-  if n == 1:
-    xmin = L[:,0].min()
-    xmax = L[:,0].max()
-    g = sns.distplot(L, hist=False, bins=500)
-    sns.plt.grid()
-    sns.plt.xlim(xmin, xmax)
-    sns.plt.xlabel('LD1')
-    sns.plt.ylabel('density')
-    sns.plt.tight_layout()
-    sns.plt.savefig(direc + 'all' + '.png')
-    sns.plt.close()
-  else:
-    xmin = L[:,0].min()
-    xmax = L[:,0].max()
-    ymin = L[:,1].min()
-    ymax = L[:,1].max()
-    g = sns.jointplot(L[:,0], L[:,1], kind='kde', color='k',
-                      stat_func=None,
-                      xlim=(xmin, xmax), ylim=(ymin, ymax))
-    g.set_axis_labels('all classes','')
-    g.savefig(direc + 'all' + '.png')
+	"""
+	"""
+	lda = LDA(n_components=2)
+	L   = lda.fit_transform(X,y)
+	n   = shape(L)[1]
 
-  label = unique(y)
-  k     = len(label)
-  cols  = cm.rainbow(linspace(0,1,k))
-  ax    = plt.subplot(111)
-  for l,c in zip(label, cols):
-    if n == 1:
-      g = sns.distplot(L[y == l], hist=False, bins=500,
-                       label=label_dict[l])
-    else:
-      g = sns.jointplot(L[:,0][y == l],
-                        L[:,1][y == l],
-                        kind='kde', color='k', stat_func=None,
-                        xlim=(xmin, xmax), ylim=(ymin, ymax))
-      g.set_axis_labels(label_dict[l],'')
-      g.savefig(direc + label_dict[l] + '.png')
-      sns.plt.close()
-      #plt.scatter(L[:,0][y == l],
-      #            L[:,1][y == l],
-      #            marker = 'o',
-      #            color = c,
-      #            alpha=0.2,
-      #            label=label_dict[l])
+	if n == 1:
+		xmin = L[:,0].min()
+		xmax = L[:,0].max()
+		g = sns.distplot(L, hist=False, bins=500)
+		sns.plt.grid()
+		sns.plt.xlim(xmin, xmax)
+		sns.plt.xlabel('LD1')
+		sns.plt.ylabel('density')
+		sns.plt.tight_layout()
+		sns.plt.savefig(direc + 'all' + '.png')
+		sns.plt.close()
+	else:
+		xmin = L[:,0].min()
+		xmax = L[:,0].max()
+		ymin = L[:,1].min()
+		ymax = L[:,1].max()
+		g = sns.jointplot(L[:,0], L[:,1], kind='kde', color='k',
+		                  stat_func=None,
+		                  xlim=(xmin, xmax), ylim=(ymin, ymax))
+		g.set_axis_labels('all classes','')
+		g.savefig(direc + 'all' + '.png')
 
-  if n == 1:
-    sns.plt.grid()
-    sns.plt.xlim(xmin, xmax)
-    sns.plt.xlabel('LD1')
-    sns.plt.ylabel('density')
-    sns.plt.tight_layout()
-    sns.plt.savefig(direc + title + '.png')
-    sns.plt.close()
-  else:
-    #leg = plt.legend(loc='upper right', fancybox=True)
-    #leg.get_frame().set_alpha(0.5)
-    #plt.grid()
-    #plt.ylabel('LD2')
-    #plt.xlabel('LD1')
-    #plt.savefig(direc + title + '.png')
-    sns.plt.close()
+	label = unique(y)
+	k     = len(label)
+	cols  = cm.rainbow(linspace(0,1,k))
+	ax    = plt.subplot(111)
+	for l,c in zip(label, cols):
+		if n == 1:
+			g = sns.distplot(L[y == l], hist=False, bins=500,
+			                 label=label_dict[l])
+		else:
+			g = sns.jointplot(L[:,0][y == l],
+			                  L[:,1][y == l],
+			                  kind='kde', color='k', stat_func=None,
+			                  xlim=(xmin, xmax), ylim=(ymin, ymax))
+			g.set_axis_labels(label_dict[l],'')
+			g.savefig(direc + label_dict[l] + '.png')
+			sns.plt.close()
+			#plt.scatter(L[:,0][y == l],
+			#            L[:,1][y == l],
+			#            marker = 'o',
+			#            color = c,
+			#            alpha=0.2,
+			#            label=label_dict[l])
+
+	if n == 1:
+		sns.plt.grid()
+		sns.plt.xlim(xmin, xmax)
+		sns.plt.xlabel('LD1')
+		sns.plt.ylabel('density')
+		sns.plt.tight_layout()
+		sns.plt.savefig(direc + title + '.png')
+		sns.plt.close()
+	else:
+		#leg = plt.legend(loc='upper right', fancybox=True)
+		#leg.get_frame().set_alpha(0.5)
+		#plt.grid()
+		#plt.ylabel('LD2')
+		#plt.xlabel('LD1')
+		#plt.savefig(direc + title + '.png')
+		sns.plt.close()
 
 i   = [0,1,2,3,4,5,6,7,8,9,10,11,12,33,34,36,37,38]
 y   = M[:,35]

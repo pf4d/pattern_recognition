@@ -82,7 +82,7 @@ cat("accuracy of t-test nway =", n2, "\n")
 cat("accuracy of seq nway =",    n3, "\n")
 
 # print the result to the screen :
-cat("accuracy of full dataset =", 
+cat("accuracy of full dataset =",
     prop1*100, "%\n")
 cat("J11 =", J11, ": J21 =", J21, ": J31 =", J31, "\n")
 cat("accuracy of t-test dims",
@@ -120,19 +120,19 @@ par(mar=c(2.5,2.5,.1,.1),mgp = c(1.5, .5, 0), mfrow=c(1,3))
 plot(xlda1, ylda1, col=cc, bg=cc, type='p', pch=21,
      xlab='First Linear Discriminant',
      ylab='Second Linear Discriminant', main='')
-legend("topleft", "a.)", bty="n") 
+legend("topleft", "a.)", bty="n")
 grid()
 
 plot(xlda2, ylda2, col=cc, bg=cc, type='p', pch=21,
      xlab='First Linear Discriminant',
      ylab='Second Linear Discriminant', main='')
-legend("topleft", "b.)", bty="n") 
+legend("topleft", "b.)", bty="n")
 grid()
 
 plot(xlda3, ylda3, col=cc, bg=cc, type='p', pch=21,
      xlab='First Linear Discriminant',
      ylab='Second Linear Discriminant', main='')
-legend("topleft", "c.)", bty="n") 
+legend("topleft", "c.)", bty="n")
 grid()
 
 dev.off()
